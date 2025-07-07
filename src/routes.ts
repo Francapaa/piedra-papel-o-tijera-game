@@ -19,8 +19,12 @@ function getCleanPathFromUrl(): string{
 export function initRouter (): void{
 
   const initPath = getCleanPathFromUrl();
+  renderPath(initPath); 
+  window.addEventListener('popstate', () =>{
+  const currentPath = getCleanPathFromUrl();
+  renderPath(currentPath); 
+  });
 
- renderPath(initPath); 
 }
 
 
@@ -54,7 +58,7 @@ else{
 }
 
 
-function goTo (path: string): void{
+export function goTo (path: string): void{
 
   const basePath = '/piedra-papel-o-tijera-game'; 
 
