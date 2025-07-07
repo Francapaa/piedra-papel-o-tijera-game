@@ -12,18 +12,22 @@ const state = {
     history:[] as {myPlay: jugada; computerPlay: jugada; result: "gane" | "perdi"| "empate"}[],
     // HISTORY GUARDA EL HISTORIAL POR CADA PARTIDA QUE JUEGUES 
     // MY PLAY: MI JUGADA, COMPUTERPLAY: JUGADA DE COMPU Y RESULTADOS: POSIBLES RESULTADOS
+    //EL HISTORIAL ES ARRAY QUE SOLO PUEDE CONTENER OBJETOS DE ESE TIPO
   },
   getState(){
     return this.data; 
   },
-  setMove(move: jugada ){
-    const currentState = this.getState();
+  setMove(move: jugada ){ //MI JUGADA, LLAMAMOS AL ESTADO ACTUAL, CARGAMOS HISTORIAL, Y MI PLAY ES IGUAL A JUGADA
+    const currentState = this.getState();      
     this.loadFromStorage(); 
     currentState.currentGame.myPlay = move; 
   },
-  computerSetMove (move: jugada){
+  computerSetMove (){ // IGUAL A MI JUGADA NADA MAS QUE ES DE LA COMPUTADORA
+    const moves : jugada [] = ["piedra", "papel", "tijera"];
+    const randomNumber = Math.floor(Math.random() * 3);
+    const computerRandomMove = moves[randomNumber];
     const currentState = this.getState();
-    currentState.currentGame.computerPlay = move;
+    currentState.currentGame.computerPlay = computerRandomMove; 
   },
   loadFromStorage(){
     const currentState = this.getState(); 
@@ -51,6 +55,8 @@ const state = {
       computerPlay : currentState.currentGame.computerPlay as jugada,
       result,
     })
+    currentState.currentGame.computerPlay = "";
+    currentState.currentGame.myPlay = ""; 
     }
     this.savedToLocalStorage();
   },
