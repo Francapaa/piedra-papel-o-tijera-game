@@ -40,6 +40,7 @@ const app = document.getElementById("app");
 
 if (!app){ // NO EXISTE APP EN HTML, NO MUESTRA NADA
   console.error("No pudimos encontrar la aplicacion"); 
+  return ; 
 }
 
 const renderFunction = routes[path]; 

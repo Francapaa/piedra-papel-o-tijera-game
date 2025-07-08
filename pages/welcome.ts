@@ -23,7 +23,7 @@ if (imageContainer){
   imageContainer.appendChild(images.scissors); 
 }
 
-  const btn = document.getElementById("#instructions-btn");
+  const btn = app.querySelector('.instructions-btn'); 
   btn?.addEventListener('click', () =>{
     goTo('/instrucciones'); 
   });
